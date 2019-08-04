@@ -1,0 +1,2 @@
+#we simply schedule the Laravel scheduler :D
+* * * * * cd /var/www/vhosts/CUSTOM_PROJECT_NAME/laravel && php artisan schedule:run >> /dev/null 2>&1

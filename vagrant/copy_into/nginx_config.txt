@@ -1,0 +1,34 @@
+#added by Daniel Rhodes
+server {
+	listen 80;
+	server_name CUSTOM_LOCAL_DOMAIN;
+
+	root /var/www/vhosts/CUSTOM_PROJECT_NAME/laravel/public;
+	index index.html index.php;
+
+	#set expiration of assets to MAX for caching
+	#location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+	#	expires max;
+	#	log_not_found off;
+	#}
+
+	#location / {
+	#	#check if a file or folder index file exists,
+	#	#else route to index.php
+	#	try_files $uri $uri/ /index.php;
+	#}
+
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+	location ~* \.php$ {
+		fastcgi_pass 127.0.0.1:9000;
+
+		#@link https://stackoverflow.com/questions/23844761/upstream-sent-too-big-header-while-reading-response-header-from-upstream
+		#fastcgi_buffers 16 16k;
+    #fastcgi_buffer_size 32k;
+
+		include fastcgi.conf;
+	}
+}

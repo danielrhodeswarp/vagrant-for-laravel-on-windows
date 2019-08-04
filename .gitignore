@@ -1,0 +1,11 @@
+#local sandbox stuff
+.vagrant
+
+#Composer's executable
+composer.phar
+
+#adminer
+laravel/public/adminer.php
+
+#phpinfo()
+laravel/public/phpinfo.php
